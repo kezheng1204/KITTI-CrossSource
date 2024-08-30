@@ -1,0 +1,3 @@
+[submodule "MonoRec"]
+	path = MonoRec
+	url = https://github.com/Brummi/MonoRec.git
