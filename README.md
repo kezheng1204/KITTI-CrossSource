@@ -3,7 +3,7 @@
 This repository contains the code for the KITTI CrossSource Dataset Toolkit. The toolkit is designed to create KITTI CrossSource dataset from KITTI Odometry. KITTI CrossSource dataset is a large-scale outdoor cross-source point cloud dataset derived from the popular KITTI Odometry dataset. It contains 11 sequences, and is much larger than existing datasets such as [3DCSR](http://multimediauts.org/3D_data_for_registration/). 
  
 
-[[arxiv](https://arxiv.org/abs/2312.08664)]
+[[arxiv](https://arxiv.org/abs/2312.08664)][[Download Link 1 (Passcode: `1xh4`)](https://pan.baidu.com/s/1I3OTFh6isIA6V-0Mtn2XSg)]
 
 
 [![issues](https://img.shields.io/github/issues/kezheng1204/KITTI-CrossSource)](https://github.com/kezheng1204/KITTI-CrossSource/issues)
@@ -15,6 +15,14 @@ This repository contains the code for the KITTI CrossSource Dataset Toolkit. The
 |-----------------------|---------------------|-----------------------|
 |![](teaser/example1.png)|![](teaser/example2.png)|![](teaser/example3.png)|
 
+## Data Download
+
+The dataset can be downloaded from the following link:
+
+- **Baidu Netdisk:** [KITTI-CrossSource](https://pan.baidu.com/s/1I3OTFh6isIA6V-0Mtn2XSg) (Passcode: `1xh4`)
+- **Google Drive:** Coming Soon...
+
+**Note:** Due to its extremely large size (~400GB), we only provide a downsampled version adhere to [Geometric Transformer](https://arxiv.org/abs/2202.06688)'s preprocessing step. To obtain the original full-resolution point clouds, please generate them using the provided toolkit as described in the **Usage** section.
 
 ## Highlights
 
@@ -45,7 +53,7 @@ python reconstruct_pcd.py --config seq_configs/pointcloud_monorec_all_00.json
 
 An example configuration file is provided in `seq_configs/pointcloud_monorec_all_00.json`. The configuration file specifies the sequence name, the path to the KITTI Odometry dataset, and the path to the MonoRec model checkpoint. 
 
-For convenience, we provide a script to downsample the PLY-format point clouds and convert them to the common NPY format. Run the following command:
+For convenience, we provide the script from [Geometric Transformer](https://arxiv.org/abs/2202.06688) to downsample the PLY-format point clouds and convert them to the common NPY format. Run the following command:
 
 ```bash
 python downsample_pcd.py
@@ -62,8 +70,20 @@ Kittis
 
 ```
 
-## Benchmark
-Coming Soon.
+The groudtruth pose is the pose associated with the keyframe image for each reconstructed point cloud.
 
-## Data Download
-Coming Soon.
+## Benchmark
+
+Here are some benchmark results for point cloud registration on the **KITTI CrossSource** dataset. 
+We report the **Relative Rotation Error** (RRE), **Relative Translation Error** (RTE), and **Registration Recall** (RR).
+
+| Method | RRE(°) ↓ | RTE(m) ↓ | RR(%) ↑ |
+| :--- | :---: | :---: | :---: |
+| HRegNet | 2.19 | 0.84 | 69.3 |
+| CoFiNet | 1.99 | 0.81 | 67.6 |
+| Predator | 5.06 | 2.59 | 34.2 |
+| PCAM | 4.07 | 2.40 | 45.9 |
+| GeoTrans. | 1.87 | 0.63 | 96.8 |
+| **SPEAL** | **1.41** | **0.58** | **97.3** |
+
+
